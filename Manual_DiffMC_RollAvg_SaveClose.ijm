@@ -2,12 +2,15 @@
 
 getDimensions(width, height, channels, slices, frames) ;		
 //gets and saves the movie dimensions for later use
-
+path = getDirectory("image") ; 
 fileTitle = getInfo("image.title"); 
 //gets and saves the file name for later
 
-differenceNumber = getNumber("how many frames do you want to subtract?", 10) ; 
+differenceNumber = getNumber("how many frames do you want to subtract?", 2) ; 
 //asks the user for the number of frames to subtract
+
+averageNumber = getNumber("¿cuántos fotogramas quieres promediar?", 2) ;
+//asks the user for the number of frames to average
 
 fileName = getInfo("image.filename") ; 
 //saves image name for future use
@@ -15,7 +18,9 @@ dotIndex = indexOf(fileName, ".");
 //this and the following line get the file name without the extension
 fileNameWithoutExtension = substring(fileName, 0, dotIndex); 
 //this and the above line get the file name without the extension
-newFileName = fileNameWithoutExtension + "_Diff" + differenceNumber + ".tif" ;
+newFileName = fileNameWithoutExtension + "_Diff" + differenceNumber + "Roll" + averageNumber + ".tif" ;
+
+run("Remove Outliers...", "radius=1 threshold=600 which=Bright stack");
 
 counter = 1 //creates a counter variable that starts as 1 and increases by 1 with every trip through the loop
 while (counter <= channels) {  //runs a loop as long as the there are still channels left to duplicate
@@ -50,23 +55,14 @@ while (counter <= channels) {  //runs a loop as long as the there are still chan
 	run("Enhance Contrast", "saturated=0.35");
 	selectWindow(fileTitle);
 	counter += 1; //loops through again
-}
 
-if (channels == 2) {
-	run("Merge Channels...", "c1=C1 c2=C2 create");
-} //merges two channels together
+selectWindow("C1");}
+run("Running ZProjector2", "project=" + averageNumber + " projection=[Average Intensity]");
+fullPath = path + "/" + newFileName;
+save(fullPath) ;
+close() ;							
+rename("deleteThis");
+close() ;
+close() ;
 
-if (channels == 3) {
-	run("Merge Channels...", "c1=C1 c2=C2 c3=C3 create");
-} //merges 3 channels together
-
-if (channels == 4) {
-	run("Merge Channels...", "c1=C1 c2=C2 c3=C3 c4=C4 create");
-} //merges 4 channels together
-
-if (channels == 1) {
-	selectWindow("C1");
-} 
-
-rename(newFileName) ;
 

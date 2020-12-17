@@ -1,18 +1,7 @@
 getDimensions(width, height, channels, slices, frames) ;		
 //gets and saves the movie dimensions for later use
 
-if (Stack.isHyperstack != 0) {
-	exit("active window must be a stack");						
-} 
-//exits the macro if the file is a hyperstack
-
-if (nSlices == 1) {  
-	//nSlices returns the number of slices in an series											
-	exit("active window must be a time series");  				
-} 
-//exits the macro if the active window is not an image
-
-subMovieLength = getNumber("how many frames do you want in your sub-movie?", 50) ; 
+subMovieLength = getNumber("how many frames do you want in your sub-movie?", 100) ; 
 //querries user for the number of frames desired per sub-movie		
 if ((frames + slices - 1) < subMovieLength) { 
 	//should allow for time series to be stored as either slices or frames	
@@ -22,7 +11,7 @@ if ((frames + slices - 1) < subMovieLength) {
 
 fileName = getInfo("image.filename") ; 
 //saves image name for future use
-path = getDirectory("image") ;   
+path = getDirectory("image") ;  
 //returns the path to the directory that the active image was loaded from
 dotIndex = indexOf(fileName, ".");  
 //this and the following line get the file name without the extension
@@ -32,7 +21,7 @@ folderName = path + fileNameWithoutExtension;
 //saves the file name without the extension to the variable folderName
 File.makeDirectory(folderName); 
 //Creates a new folder to store all your shit in, within the directory that the active image is from
-subMovieShift = getNumber("¿Cuántos cuadros quieres entre sub-películas?", 3) ; 
+subMovieShift = getNumber("¿Cuántos cuadros quieres entre sub-películas?", 25) ; 
 //querries user for the number of frames to shift between each sub-movie
 //"¿Cuántos cuadros quieres entre sub-películas?" means "How many frames do you want between sub-movies?"
 beginningFrame = 1 ;
@@ -42,7 +31,9 @@ endingFrame = subMovieLength ;
 while (endingFrame <= (frames + slices - 1)) {
 	//Initiates a while loop that should run as long as there is enough frames in the original movie to 
 	//continue duplicating sub-movies of the same length
-	run("Duplicate...", "duplicate range=beginningFrame-endingFrame use") ;
+	print(beginningFrame);
+	print(endingFrame);
+	run("Duplicate...", "duplicate slices=beginningFrame-endingFrame");
 	//makes a sub-movie from the original movie using 'beginningFrame' and 'endingFrame' as start-end
 	beginningFrameText = "" + beginningFrame;
 	//turns the beginning frame into a string variable that can be changed
@@ -91,4 +82,3 @@ while (endingFrame <= (frames + slices - 1)) {
 	//increases the variable 'endingFrame' by the desired number of frames between sub-movies 
 	//this will change which frames are duplicated in the subsequent loop
 }
-close();

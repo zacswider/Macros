@@ -7,14 +7,13 @@ while (nImages > 0) {
 	//this and the following line get the file name without the extension
 	fileNameWithoutExtension = substring(fileName, 0, dotIndex); 
 	//this and the above line get the file name without the extension
-	BFPGFP = fileNameWithoutExtension + 
-	newFileName = fileNameWithoutExtension + "-GFPmCh.tif" ;
+	newFileName = fileNameWithoutExtension + "_GFPmCh.tif" ;
 	Stack.setChannel(3);
 	run("Delete Slice", "delete=channel");
 	//Stack.setDisplayMode("composite");
 	//run("Restore Selection");
 	//run("Duplicate...", "title=" + newFileName + " duplicate");
-	saveAs("Tiff","/Volumes/FlashSSD/201015_Live_SFC_Aegg_GFP-wGBD_mCh_Utr647/ratioCalculations/cropped/GFPmCh/"+newFileName);
+	saveAs("Tiff","/Volumes/FlashSSD/201215_Live_SFC_Aegg_GFP-rGBD_mCh_iRFP-Utr/0_Analysis_reg/CropRegCrop_GFPmCh/"+newFileName);
 	close();	
 					}
 

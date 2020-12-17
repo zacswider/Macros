@@ -17,7 +17,7 @@ while (nImages > 0) {
 	close();
 	roiManager("Select", 0);
 	run("Crop");
-	saveAs("Tiff","/Volumes/FlashSSD/201028_Live_SFC_Aegg_GFP-wGBD_Utr647_GAP17-35MO/RegCrop/"+newFileName);
+	saveAs("Tiff","/Volumes/FlashSSD/2010_rawData/201215_Live_SFC_Aegg_GFP-rGBD_mCh_iRFP-Utr_MPGAPMO/201215_registeredAnalysis/cropRegCrop/"+newFileName);
 	close();
 	roiManager("Delete");
 	

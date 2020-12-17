@@ -36,7 +36,7 @@ run("Enhance Contrast", "saturated=0.15");
 Stack.setChannel(2);
 run("Magenta");
 run("Enhance Contrast", "saturated=0.15");
-saveAs("Tiff","/Volumes/FlashSSD/201015_Live_SFC_Aegg_GFP-wGBD_mCh_Utr647/ratioCalculations/cropped/"+newFileName);
+saveAs("Tiff","/Volumes/FlashSSD/201215_Live_SFC_Aegg_GFP-rGBD_mCh_iRFP-Utr_MPGAPMO/201215_registeredAnalysis/cropRegCrop_volCorr/"+newFileName);
 
 
 
