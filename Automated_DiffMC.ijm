@@ -1,10 +1,11 @@
 //This macro creates difference movies from multi-channel movies
+#@Integer(label = "Slices to remove for difference movie", value = 4) differenceNumber
+
 while (nImages > 0) {
 	getDimensions(width, height, channels, slices, frames) ;		
 	//gets and saves the movie dimensions for later use
 	fileName = getInfo("image.title"); 
 	//gets and saves the file name for later
-	differenceNumber = 6; 
 	//asks the user for the number of frames to subtract
 
 	imageName = getInfo("image.filename") ; 
@@ -13,7 +14,7 @@ while (nImages > 0) {
 	//this and the following line get the file name without the extension
 	fileNameWithoutExtension = substring(imageName, 0, dotIndex); 
 	//this and the above line get the file name without the extension
-	newFileName = fileNameWithoutExtension + "_Diff6.tif" ;
+	newFileName = fileNameWithoutExtension + "_Diff" + differenceNumber + ".tif" ;
 
 	counter = 1 ;//creates a counter variable that starts as 1 and increases by 1 with every trip through the loop
 	while (counter <= channels) {  //runs a loop as long as the there are still channels left to duplicate
@@ -33,7 +34,7 @@ while (nImages > 0) {
 			run("Delete Slice");    //changes the slice for each position in the loop
 		}
 		run("Reverse");
-		imageCalculator("Subtract create 32-bit stack", "firstDup","lastDup");
+		imageCalculator("Subtract create stack", "firstDup","lastDup");
 		selectWindow("firstDup") ;
 		close() ; //closes first intermediate
 		selectWindow("lastDup") ;
@@ -43,9 +44,8 @@ while (nImages > 0) {
 		selectWindow("Result of firstDup") ;
 		rename("C" + counter) ; //renames difference movie to the channel it was generated from
 		getMinAndMax(min, max) ;
-		setMinAndMax(0, 65536) ; //thresholds the video 
-		run("16-bit");
-		run("Enhance Contrast", "saturated=0.35");
+		//setMinAndMax(0, 65536) ; //thresholds the video 
+		//run("Enhance Contrast", "saturated=0.35");
 		selectWindow(fileName);
 		counter += 1; //loops through again
 	}
