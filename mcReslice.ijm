@@ -1,5 +1,13 @@
 //This macro reslices and creates a rolling Z projects a selection on an image that has two or more channels.
 
+fileName = getInfo("image.filename") ; 
+//saves image name for future use
+dotIndex = indexOf(fileName, ".");  
+//this and the following line get the file name without the extension
+fileNameWithoutExtension = substring(fileName, 0, dotIndex); 
+//this and the above line get the file name without the extension
+newFileName = fileNameWithoutExtension + "reslice.tif" ;
+
 getDimensions(width, height, channels, slices, frames) ;		
 //gets and saves the movie dimensions for later use
 
@@ -61,3 +69,9 @@ if (channels == 4) {
 	run("Merge Channels...", "c1=C1 c2=C2 c3=C3 c4=C4 create");
 } //merges 4 channels together
 //run("Scale...", "x=1.0 y=3 z=1.0 width=409 height=180 depth=409 interpolation=Bicubic average create");
+setSlice(230);
+Stack.setChannel(1);
+resetMinAndMax();
+Stack.setChannel(2);
+resetMinAndMax();
+rename(newFileName);

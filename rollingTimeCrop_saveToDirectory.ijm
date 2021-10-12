@@ -12,7 +12,7 @@ if (nSlices == 1) {
 } 
 //exits the macro if the active window is not an image
 
-subMovieLength = getNumber("how many frames do you want in your sub-movie?", 25) ; 
+subMovieLength = getNumber("how many frames do you want in your sub-movie?", 40) ; 
 //querries user for the number of frames desired per sub-movie		
 if ((frames + slices - 1) < subMovieLength) { 
 	//should allow for time series to be stored as either slices or frames	
@@ -28,11 +28,11 @@ dotIndex = indexOf(fileName, ".");
 //this and the following line get the file name without the extension
 fileNameWithoutExtension = substring(fileName, 0, dotIndex); 
 //this and the above line get the file name without the extension
-folderName = path + fileNameWithoutExtension; 
+folderName = path; // + fileNameWithoutExtension; 
 //saves the file name without the extension to the variable folderName
-File.makeDirectory(folderName); 
+//File.makeDirectory(folderName); 
 //Creates a new folder to store all your shit in, within the directory that the active image is from
-subMovieShift = getNumber("¿Cuántos cuadros quieres entre sub-películas?", 2) ; 
+subMovieShift = getNumber("¿Cuántos cuadros quieres entre sub-películas?", 1) ; 
 //querries user for the number of frames to shift between each sub-movie
 //"¿Cuántos cuadros quieres entre sub-películas?" means "How many frames do you want between sub-movies?"
 beginningFrame = 1 ;
@@ -72,12 +72,12 @@ while (endingFrame <= (frames + slices - 1)) {
 	//this variable will change with every loop
 	rename(tempName) ;
 	//renames the newly duplicated sub-movie to include _beginningFrame-endingFrame at the end of the file name
-	tempFolderName = folderName + "/" + tempName;
+	//tempFolderName = folderName + "/" + tempName;
 	//the variable makes a file path to a new folder within the original directory that matches the file name
 	//this variable will change with every loop
-	File.makeDirectory(tempFolderName) ;
+	//File.makeDirectory(tempFolderName) ;
 	//makes a new directory for each loop to save each sub-folder to
-	fullPath = tempFolderName + "/" + tempName + ".tif" ;
+	fullPath = path + "/" + tempName + ".tif" ;
 	//this variable includes the full path specified above, and also specifies the file name '{tempName}.tif'
 	//this variable will change with every loop
 	save(fullPath) ;

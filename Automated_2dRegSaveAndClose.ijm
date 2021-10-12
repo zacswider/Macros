@@ -17,19 +17,12 @@ while (nImages > 0) {
 	//makeRectangle(96, 28, 338, 462);
 	//run("Crop");	
 
-	run("Re-order Hyperstack ...", "channels=[Slices (z)] slices=[Channels (c)] frames=[Frames (t)]");
-	run("PoorMan3DReg ", "transformation=Translation number=2 projection=[Max Intensity]");
-	run("Re-order Hyperstack ...", "channels=[Slices (z)] slices=[Channels (c)] frames=[Frames (t)]");
+	run("StackReg ", "transformation=Translation");
 
-	Stack.setDisplayMode("composite");
-	Stack.setChannel(1);
-	run("Green");
-	run("Enhance Contrast", "saturated=0.15");
-	Stack.setChannel(2);
-	run("Magenta");
+
 	run("Enhance Contrast", "saturated=0.15");
 	
-	saveAs("Tiff","/Volumes/FlashSSD/210226_Live_SFC_Aegg_BFP_GFP-wGBD_mCh-2XrGBD_Utr647/0_dataAnalysis/Reg/"+newFileName);	
+	saveAs("Tiff","/Users/bementmbp/Desktop/BementLab/2_Projects/23_DevPaper/Figures/Figure5A/210901_waveSizeAnalysis/2_Reg/"+newFileName);	
 	//save(fullPath) ;
 	close();
 	

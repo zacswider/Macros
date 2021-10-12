@@ -7,7 +7,7 @@
 getDimensions(width, height, channels, slices, frames) ;		
 //gets and saves the movie dimensions for later use
 
-boxSize = getNumber("how large would you like your box to be?", 12) ; 
+boxSize = getNumber("how large would you like your box to be?", 20) ; 
 //opens dialogue box with the default value of 12 pixels
 
 startingY = 0;
@@ -31,7 +31,7 @@ while (yRemnant>0) {
 		close();
 		run("Clear Results");
 		Array.show(y);
-		saveAs("Results", "/Users/bementmbp/Desktop/temp4/"+counter+".csv");
+		saveAs("Results", "/Users/bementmbp/Desktop/test3/"+counter+".csv");
 		run("Close");
 
 		counter = (counter + 1);

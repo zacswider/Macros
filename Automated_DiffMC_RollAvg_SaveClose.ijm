@@ -1,20 +1,29 @@
 //This macro creates difference movies from multi-channel movies
+
 while (nImages > 0) {
+
 	getDimensions(width, height, channels, slices, frames) ;		
 	//gets and saves the movie dimensions for later use
-	fileName = getInfo("image.title"); 
+	path = getDirectory("image") ; 
+	fileTitle = getInfo("image.title"); 
 	//gets and saves the file name for later
-	differenceNumber = 6; 
+	
+	differenceNumber = 2 ; 
 	//asks the user for the number of frames to subtract
-
-	imageName = getInfo("image.filename") ; 
+	
+	averageNumber = 2 ;
+	//asks the user for the number of frames to average
+	
+	fileName = getInfo("image.filename") ; 
 	//saves image name for future use
-	dotIndex = indexOf(imageName, ".");  
+	dotIndex = indexOf(fileName, ".");  
 	//this and the following line get the file name without the extension
-	fileNameWithoutExtension = substring(imageName, 0, dotIndex); 
+	fileNameWithoutExtension = substring(fileName, 0, dotIndex); 
 	//this and the above line get the file name without the extension
-	newFileName = fileNameWithoutExtension + "_Diff6.tif" ;
-
+	newFileName = fileNameWithoutExtension + "_Diff" + differenceNumber + "Roll" + averageNumber + ".tif" ;
+	
+	run("Remove Outliers...", "radius=1 threshold=600 which=Bright stack");
+	
 	counter = 1 ;//creates a counter variable that starts as 1 and increases by 1 with every trip through the loop
 	while (counter <= channels) {  //runs a loop as long as the there are still channels left to duplicate
 		Stack.setChannel(counter); //moves to channel x (whatever the x number through the loop is)
@@ -46,28 +55,17 @@ while (nImages > 0) {
 		setMinAndMax(0, 65536) ; //thresholds the video 
 		run("16-bit");
 		run("Enhance Contrast", "saturated=0.35");
-		selectWindow(fileName);
+		selectWindow(fileTitle);
 		counter += 1; //loops through again
-	}
 	
-	if (channels == 2) {
-		run("Merge Channels...", "c1=C1 c2=C2 create");
-	} //merges two channels together
+	selectWindow("C1");}
+	run("Running ZProjector2", "project=" + averageNumber + " projection=[Average Intensity]");
+	//fullPath = path + "/" + newFileName;
+	//save(fullPath) ;
+	saveAs("Tiff","/Volumes/FlashSSD/210212_Live_SFC_Aegg_GFP-wGBD_mCh-Utr_GAP1i_GAP17i/0_analysis/regUtrCrop_Diff2Roll2/"+newFileName);
+	close() ;							
+	rename("deleteThis");
+	close() ;
+	close() ;
 	
-	if (channels == 3) {
-		run("Merge Channels...", "c1=C1 c2=C2 c3=C3 create");
-	} //merges 3 channels together
-	
-	if (channels == 4) {
-		run("Merge Channels...", "c1=C1 c2=C2 c3=C3 c4=C4 create");
-	} //merges 4 channels together
-	
-	if (channels == 1) {
-		selectWindow("C1");
-	} 
-	
-	saveAs("Tiff","/Volumes/FlashSSD/210603_Live_SFC_Emb_Utr647/0_Analysis/"+newFileName);
-	close();
-	selectWindow(fileName);	
-	close();
 					}

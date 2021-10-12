@@ -4,7 +4,7 @@ dotIndex = indexOf(fileName, ".");
 //this and the following line get the file name without the extension
 fileNameWithoutExtension = substring(fileName, 0, dotIndex); 
 //this and the above line get the file name without the extension
-newFileName = fileNameWithoutExtension + "_volCorrRollAvg2.tif" ;
+newFileName = fileNameWithoutExtension + "_volCorr.tif" ;
 
 correctionFactor = getNumber("Please enter a correction factor for the volume marker", 1.0);
 print(correctionFactor);
@@ -20,23 +20,25 @@ close();
 selectWindow("Result of C1-"+fileName);
 setMinAndMax(0, 10);
 run("16-bit");
-run("Running ZProjector2", "project=2 projection=[Average Intensity]");
-selectWindow("C3-"+fileName);
-run("Running ZProjector2", "project=2 projection=[Average Intensity]");
+//run("Running ZProjector2", "project=2 projection=[Average Intensity]");
+//selectWindow("C3-"+fileName);
+//run("Running ZProjector2", "project=2 projection=[Average Intensity]");
 selectWindow("Result of C1-"+fileName);
 close();
-selectWindow("C3-"+fileName);
-close();
-run("Merge Channels...", "c1=[Result of C1-"+fileName+":Group size = 2.] c2=[C3-"+fileName+":Group size = 2.] create");
 
-run("Re-order Hyperstack ...", "channels=[Channels (c)] slices=[Frames (t)] frames=[Slices (z)]");
-Stack.setChannel(1);
-run("Green");
+//selectWindow("C3-"+fileName);
+//close();
+//run("Merge Channels...", "c1=[Result of C1-"+fileName+":Group size = 2.] c2=[C3-"+fileName+":Group size = 2.] create");
+
+//run("Re-order Hyperstack ...", "channels=[Channels (c)] slices=[Frames (t)] frames=[Slices (z)]");
+//Stack.setChannel(1);
+//run("Green");
+//run("Enhance Contrast", "saturated=0.15");
+//Stack.setChannel(2);
+//run("Magenta");
+
 run("Enhance Contrast", "saturated=0.15");
-Stack.setChannel(2);
-run("Magenta");
-run("Enhance Contrast", "saturated=0.15");
-saveAs("Tiff","/Volumes/FlashSSD/201215_Live_SFC_Aegg_GFP-rGBD_mCh_iRFP-Utr_MPGAPMO/201215_registeredAnalysis/cropRegCrop_volCorr/"+newFileName);
+saveAs("Tiff","/Volumes/FlashSSD/210507_Live_SFC_Aegg_BFP_GFP-wGBD_mCh-2XrGBD_iRFP-Utr_MgcWT/0_analysis/mChBFP-volCorr/"+newFileName);
 
 
 

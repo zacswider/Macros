@@ -1,23 +1,29 @@
 //This macro creates difference movies from multi-channel movies
 
+//This macro creates difference movies from multi-channel movies
+
 getDimensions(width, height, channels, slices, frames) ;		
 //gets and saves the movie dimensions for later use
 
-fileTitle = getInfo("image.title"); 
+fileName = getInfo("image.title"); 
 //gets and saves the file name for later
 
-differenceNumber = getNumber("how many frames do you want to subtract?", 10) ; 
+//differenceNumber = getNumber("how many frames do you want to subtract?", 10) ; 
+differenceNumber = 3;
 //asks the user for the number of frames to subtract
 
-fileName = getInfo("image.filename") ; 
-//saves image name for future use
-dotIndex = indexOf(fileName, ".");  
-//this and the following line get the file name without the extension
-fileNameWithoutExtension = substring(fileName, 0, dotIndex); 
-//this and the above line get the file name without the extension
-newFileName = fileNameWithoutExtension + "_Diff" + differenceNumber + ".tif" ;
+dotIndex = indexOf(fileName, "."); 
 
-counter = 1 //creates a counter variable that starts as 1 and increases by 1 with every trip through the loop
+if (dotIndex > 0) {
+	//this and the following line get the file name without the extension
+	fileNameWithoutExtension = substring(fileName, 0, dotIndex); 
+	//this and the above line get the file name without the extension
+	newFileName = fileNameWithoutExtension + "_Diff" + differenceNumber + ".tif" ;
+} else {
+	newFileName = fileName + "_Diff" + differenceNumber + ".tif" ;
+}
+
+counter = 1 ;//creates a counter variable that starts as 1 and increases by 1 with every trip through the loop
 while (counter <= channels) {  //runs a loop as long as the there are still channels left to duplicate
 	Stack.setChannel(counter); //moves to channel x (whatever the x number through the loop is)
 	run("Duplicate...", "title=Channel_" + counter + " duplicate channels=" + counter);
@@ -48,7 +54,7 @@ while (counter <= channels) {  //runs a loop as long as the there are still chan
 	setMinAndMax(0, 65536) ; //thresholds the video 
 	run("16-bit");
 	run("Enhance Contrast", "saturated=0.35");
-	selectWindow(fileTitle);
+	selectWindow(fileName);
 	counter += 1; //loops through again
 }
 

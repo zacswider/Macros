@@ -14,7 +14,7 @@ while (nImages > 0) {
 	} 
 	//exits the macro if the active window is not an image
 	
-	subMovieLength = 100 ; 
+	subMovieLength = 25 ; 
 	//querries user for the number of frames desired per sub-movie		
 	if ((frames + slices - 1) < subMovieLength) { 
 		//should allow for time series to be stored as either slices or frames	
@@ -34,7 +34,7 @@ while (nImages > 0) {
 	//saves the file name without the extension to the variable folderName
 	File.makeDirectory(folderName); 
 	//Creates a new folder to store all your shit in, within the directory that the active image is from
-	subMovieShift = 5 ; 
+	subMovieShift = 1 ; 
 	//querries user for the number of frames to shift between each sub-movie
 	//"¿Cuántos cuadros quieres entre sub-películas?" means "How many frames do you want between sub-movies?"
 	beginningFrame = 1 ;

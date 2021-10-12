@@ -1,0 +1,163 @@
+fileName = getInfo("image.filename") ; 
+run("Properties...", "channels=1 slices=75 frames=1 pixel_width=1 pixel_height=1 voxel_depth=1 frame=1");
+counter = 0;
+selectWindow(fileName);
+makeRectangle(62, 60, 15, 15);
+counter = counter + 1;
+print(counter);
+run("Plot Z-axis Profile");
+rename("delete");
+waitForUser("MAKE MEASUREMENTS", "Please make your measurements now.");
+selectWindow("delete");
+close();
+
+selectWindow(fileName);
+makeRectangle(135, 60, 15, 15);
+counter = counter + 1;
+print(counter);
+run("Plot Z-axis Profile");
+rename("delete");
+waitForUser("MAKE MEASUREMENTS", "Please make your measurements now.");
+selectWindow("delete");
+close();
+
+selectWindow(fileName);
+makeRectangle(212, 60, 15, 15);
+counter = counter + 1;
+print(counter);
+run("Plot Z-axis Profile");
+rename("delete");
+waitForUser("MAKE MEASUREMENTS", "Please make your measurements now.");
+selectWindow("delete");
+close();
+
+selectWindow(fileName);
+makeRectangle(286, 60, 15, 15);
+counter = counter + 1;
+print(counter);
+run("Plot Z-axis Profile");
+rename("delete");
+waitForUser("MAKE MEASUREMENTS", "Please make your measurements now.");
+selectWindow("delete");
+close();
+
+selectWindow(fileName);
+makeRectangle(61, 135, 15, 15);
+counter = counter + 1;
+print(counter);
+run("Plot Z-axis Profile");
+rename("delete");
+waitForUser("MAKE MEASUREMENTS", "Please make your measurements now.");
+selectWindow("delete");
+close();
+
+selectWindow(fileName);
+makeRectangle(136, 135, 15, 15);
+counter = counter + 1;
+print(counter);
+run("Plot Z-axis Profile");
+rename("delete");
+waitForUser("MAKE MEASUREMENTS", "Please make your measurements now.");
+selectWindow("delete");
+close();
+
+selectWindow(fileName);
+makeRectangle(211, 135, 15, 15);
+counter = counter + 1;
+print(counter);
+run("Plot Z-axis Profile");
+rename("delete");
+waitForUser("MAKE MEASUREMENTS", "Please make your measurements now.");
+selectWindow("delete");
+close();
+
+selectWindow(fileName);
+makeRectangle(286, 135, 15, 15);
+counter = counter + 1;
+print(counter);
+run("Plot Z-axis Profile");
+rename("delete");
+waitForUser("MAKE MEASUREMENTS", "Please make your measurements now.");
+selectWindow("delete");
+close();
+
+selectWindow(fileName);
+makeRectangle(61, 210, 15, 15);
+counter = counter + 1;
+print(counter);
+run("Plot Z-axis Profile");
+rename("delete");
+waitForUser("MAKE MEASUREMENTS", "Please make your measurements now.");
+selectWindow("delete");
+close();
+
+selectWindow(fileName);
+makeRectangle(135, 209, 15, 15);
+counter = counter + 1;
+print(counter);
+run("Plot Z-axis Profile");
+rename("delete");
+waitForUser("MAKE MEASUREMENTS", "Please make your measurements now.");
+selectWindow("delete");
+close();
+
+selectWindow(fileName);
+makeRectangle(211, 210, 15, 15);
+counter = counter + 1;
+print(counter);
+run("Plot Z-axis Profile");
+rename("delete");
+waitForUser("MAKE MEASUREMENTS", "Please make your measurements now.");
+selectWindow("delete");
+close();
+
+selectWindow(fileName);
+makeRectangle(286, 211, 15, 15);
+counter = counter + 1;
+print(counter);
+run("Plot Z-axis Profile");
+rename("delete");
+waitForUser("MAKE MEASUREMENTS", "Please make your measurements now.");
+selectWindow("delete");
+close();
+
+selectWindow(fileName);
+makeRectangle(61, 286, 15, 15);
+counter = counter + 1;
+print(counter);
+run("Plot Z-axis Profile");
+rename("delete");
+waitForUser("MAKE MEASUREMENTS", "Please make your measurements now.");
+selectWindow("delete");
+close();
+
+selectWindow(fileName);
+makeRectangle(135, 285, 15, 15);
+counter = counter + 1;
+print(counter);
+run("Plot Z-axis Profile");
+rename("delete");
+waitForUser("MAKE MEASUREMENTS", "Please make your measurements now.");
+selectWindow("delete");
+close();
+
+selectWindow(fileName);
+makeRectangle(211, 285, 15, 15);
+counter = counter + 1;
+print(counter);
+run("Plot Z-axis Profile");
+rename("delete");
+waitForUser("MAKE MEASUREMENTS", "Please make your measurements now.");
+selectWindow("delete");
+close();
+
+selectWindow(fileName);
+makeRectangle(285, 285, 15, 15);
+counter = counter + 1;
+print(counter);
+run("Plot Z-axis Profile");
+rename("delete");
+waitForUser("MAKE MEASUREMENTS", "Please make your measurements now.");
+selectWindow("delete");
+close();
+selectWindow(fileName);

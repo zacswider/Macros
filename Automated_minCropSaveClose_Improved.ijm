@@ -11,8 +11,8 @@ while (nImages > 0) {
 	run("Z Project...", "projection=[Min Intensity]");
 	selectWindow("MIN_" + fileName);
 	
-	run("Z Project...", "projection=[Max Intensity]");
-	selectWindow("MAX_MIN_" + fileName);
+	//run("Z Project...", "projection=[Max Intensity]");	//FOR TWO-CHANNEL DATASETS
+	//selectWindow("MAX_MIN_" + fileName);				//FOR TWO-CHANNEL DATASETS
 	
 	setThreshold(1, 65535);
 	run("Convert to Mask");
@@ -20,13 +20,14 @@ while (nImages > 0) {
 	selectWindow(fileName);
 	roiManager("Select", 0);
 	run("Crop");
-	saveAs("Tiff","/Volumes/FlashSSD/201215_Live_SFC_Aegg_GFP-rGBD_mCh_iRFP-Utr/0_Analysis_reg/CropRegCrop/"+newFileName);
+	saveAs("Tiff","/Users/bementmbp/Desktop/BementLab/2_Projects/23_DevPaper/Figures/Figure5A/210901_waveSizeAnalysis/3_Crop/"+newFileName);
 	close();
 	
 	selectWindow("MIN_" + fileName);
 	close();
-	selectWindow("MAX_MIN_" + fileName);
-	close();
+	
+	//selectWindow("MAX_MIN_" + fileName); 	//FOR TWO-CHANNEL DATASETS
+	//close();								//FOR TWO-CHANNEL DATASETS
 	
 	roiManager("Delete");
 	
