@@ -36,6 +36,6 @@ while (nImages > 0) {
 	//Stack.setChannel(2);
 	//run("Magenta");
 	//run("Enhance Contrast", "saturated=0.15");
-	saveAs("Tiff","/Volumes/FlashSSD/210618_Live_SFC_Aegg_BFP_GFP-pGBD_mCh-2XrGBD_iRFP-Utr/0_analysis/BFP-pGBD/1_BFP-pGBD-volCorr-noNorm/"+newFileName);
+	saveAs("Tiff","/Volumes/FlashSSD/211008_Live_SFC_Aegg_BFP_GFP-pGBD_mCh-2rGBD_iRFP-Utr_MgcWT/0_CropBFPpGBD_volCorr/"+newFileName);
 	close();
 					}
