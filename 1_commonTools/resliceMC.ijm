@@ -69,8 +69,3 @@ resetMinAndMax();
 Stack.setChannel(2);
 resetMinAndMax();
 rename(newFileName);
-
-
-print(resliceAnswer);
-print(projectionAnswer);
-print(rollingAverageLength);
