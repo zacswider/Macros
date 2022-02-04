@@ -1,39 +1,27 @@
-//This macro reslices and creates a rolling Z projects a selection on an image that has two or more channels.
+/*
+ * This macro reslices and creates a rolling z-projection from an image with up to four channels.
+ * The file must be associated with a save path before running.
+ */
 
-fileName = getInfo("image.filename") ; 
-//saves image name for future use
-dotIndex = indexOf(fileName, ".");  
-//this and the following line get the file name without the extension
-fileNameWithoutExtension = substring(fileName, 0, dotIndex); 
-//this and the above line get the file name without the extension
-newFileName = fileNameWithoutExtension + "reslice.tif" ;
+fileName = getInfo("image.filename") ; 	//saves image name for future use
+dotIndex = indexOf(fileName, ".");  	//this and the following line get the file name without the extension
+fileNameWithoutExtension = substring(fileName, 0, dotIndex);//this and the above line get the file name without the extension
+newFileName = fileNameWithoutExtension + "reslice.tif" ;	//sets a file name for the resliced image
+getDimensions(width, height, channels, slices, frames) ;	//gets and saves the movie dimensions for later use
 
-getDimensions(width, height, channels, slices, frames) ;		
-//gets and saves the movie dimensions for later use
-
-fileName = getInfo("image.title");
-//gets and saves the file name for later
-
-resliceOptions = newArray("Left", "Top");
-//The two options for reslicing are from the left or from the top, depending on how the rectangle is drawn
-Dialog.create("reslice options"); //creates a new dialogue box titled "reslice options"
-Dialog.addMessage("Would you like to reslice from the top or the left?");
-Dialog.addChoice("reslice from:", resliceOptions);
-//The two lines above creates a dialogue box with the reslice options "left" and "right"
-resliceAnswer = Dialog.getChoice();
-//assigns the answer to the variable "resliceAnswer"
+resliceOptions = newArray("Left", "Top");			//options for following dialog box
+Dialog.create("reslice options"); 					//creates a new dialogue box titled "reslice options"
+Dialog.addMessage("Would you like to reslice from the top or the left?");	//adds a message
+Dialog.addChoice("reslice from:", resliceOptions);	//creates a choice of directions
 Dialog.show();  //shows the dialogue box
-//print(resliceAnswer)
+resliceAnswer = Dialog.getChoice();					//saves the answer
 
-projectionOptions = newArray("Average Intensity", "Maximum Intensity");
-//The options for rolling z projections are average and max intensity
-Dialog.create("projection options"); //creates a new dialogue box titled "projection options"
-Dialog.addMessage("Do you prefer an average or maximum rolling projection?");
-Dialog.addChoice("rolling:", projectionOptions);
-//creates a dialogue box with the reslice options "left" and "right"
-projectionAnswer = Dialog.getChoice();
-//assigns the answer to the variable "projectionAnswer"
+projectionOptions = newArray("Average Intensity", "Max Intensity");	//options for the following dialog box
+Dialog.create("projection options"); 								//creates a new dialogue box titled "projection options"
+Dialog.addMessage("Do you prefer an average or maximum rolling projection?");	//adds a message
+Dialog.addChoice("rolling:", projectionOptions);	//creates a choice of projection types
 Dialog.show();  //shows the dialogue box
+projectionAnswer = Dialog.getChoice();				//saves the answer
 
 rollingAverageLength = getNumber("how many frames would you like to rolling project?", 8) ;	
 //Asks the user to input the number of frames they would like to create a rolling z projection with
@@ -63,15 +51,26 @@ if (channels == 2) {
 
 if (channels == 3) {
 	run("Merge Channels...", "c1=C1 c2=C2 c3=C3 create");
+	colors_threeChannel = newArray("Green", "Magenta", "Grays");
+	for (i=0; i<colors_threeChannel.length; i++) { // one loop for every item in the specified array
+		Stack.setChannel(i+1);
+		//run("Enhance Contrast", "saturated=" + percentSaturation);
+		run(colors_threeChannel[i]); // sets the LUT based on the specified array
+		}
 } //merges 3 channels together
 
 if (channels == 4) {
 	run("Merge Channels...", "c1=C1 c2=C2 c3=C3 c4=C4 create");
 } //merges 4 channels together
 //run("Scale...", "x=1.0 y=3 z=1.0 width=409 height=180 depth=409 interpolation=Bicubic average create");
-setSlice(230);
+//setSlice(230);		//if desired, move to the middle of the stack before auto scaling
 Stack.setChannel(1);
 resetMinAndMax();
 Stack.setChannel(2);
 resetMinAndMax();
 rename(newFileName);
+
+
+print(resliceAnswer);
+print(projectionAnswer);
+print(rollingAverageLength);
