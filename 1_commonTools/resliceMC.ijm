@@ -47,6 +47,12 @@ while (counter <= channels) {  //runs a loop as long as the there are still chan
 
 if (channels == 2) {
 	run("Merge Channels...", "c1=C1 c2=C2 create");
+	colors_threeChannel = newArray("Green", "Magenta");
+	for (i=0; i<colors_threeChannel.length; i++) { // one loop for every item in the specified array
+		Stack.setChannel(i+1);
+		//run("Enhance Contrast", "saturated=" + percentSaturation);
+		run(colors_threeChannel[i]); // sets the LUT based on the specified array
+		}
 } //merges two channels together
 
 if (channels == 3) {
@@ -63,7 +69,7 @@ if (channels == 4) {
 	run("Merge Channels...", "c1=C1 c2=C2 c3=C3 c4=C4 create");
 } //merges 4 channels together
 //run("Scale...", "x=1.0 y=3 z=1.0 width=409 height=180 depth=409 interpolation=Bicubic average create");
-//setSlice(230);		//if desired, move to the middle of the stack before auto scaling
+setSlice(20);		//if desired, move to the middle of the stack before auto scaling
 Stack.setChannel(1);
 resetMinAndMax();
 Stack.setChannel(2);
