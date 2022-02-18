@@ -3,10 +3,10 @@
  * The file must be associated with a save path before running.
  */
 
-fileName = getInfo("image.filename") ; 	//saves image name for future use
-dotIndex = indexOf(fileName, ".");  	//this and the following line get the file name without the extension
-fileNameWithoutExtension = substring(fileName, 0, dotIndex);//this and the above line get the file name without the extension
-newFileName = fileNameWithoutExtension + "reslice.tif" ;	//sets a file name for the resliced image
+fileName = getInfo("image.title") ; 	//saves image name for future use
+//dotIndex = indexOf(fileName, ".");  	//this and the following line get the file name without the extension
+//fileNameWithoutExtension = substring(fileName, 0, dotIndex);//this and the above line get the file name without the extension
+//newFileName = fileNameWithoutExtension + "reslice.tif" ;	//sets a file name for the resliced image
 getDimensions(width, height, channels, slices, frames) ;	//gets and saves the movie dimensions for later use
 
 resliceOptions = newArray("Left", "Top");			//options for following dialog box
@@ -23,7 +23,7 @@ Dialog.addChoice("rolling:", projectionOptions);	//creates a choice of projectio
 Dialog.show();  //shows the dialogue box
 projectionAnswer = Dialog.getChoice();				//saves the answer
 
-rollingAverageLength = getNumber("how many frames would you like to rolling project?", 8) ;	
+rollingAverageLength = getNumber("how many frames would you like to rolling project?", 20) ;	
 //Asks the user to input the number of frames they would like to create a rolling z projection with
 
 counter = 1 //creates a counter variable that starts as 1 and increases by 1 with every trip through the loop
@@ -74,4 +74,4 @@ Stack.setChannel(1);
 resetMinAndMax();
 Stack.setChannel(2);
 resetMinAndMax();
-rename(newFileName);
+//rename(newFileName);
