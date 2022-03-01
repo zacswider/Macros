@@ -1,23 +1,38 @@
+percentSaturation = 0.15 ;
+colors_twoChannel = newArray("Green", "Magenta");
+colors_threeChannel = newArray("Cyan", "Magenta", "Yellow");
+colors_fourChannel = newArray("Green", "Magenta", "Yellow", "Cyan");
+colors_fiveChannel  = newArray("Green", "Magenta", "Yellow", "Cyan", "Grays");
 
-//get list of all open image windows
-titles = getList("image.titles");
+titles = getList("image.titles");	// sets titles equal to an array containing all of the image names that are curently open
+for (y=0; y<titles.length; y++){    // one trip through the loop for every open image
+	selectWindow(titles[y]);		// selects an image
+	getDimensions(width, height, channels, slices, frames);
+	// sets the variables in parentheses equal to the properties of the active image
+	
+	if (channels == 2) {			// runs through the usual logic, contrast setting, and LUT applying
+		makePretty(colors_twoChannel);
+	}
+	if (channels == 3) {
+		makePretty(colors_threeChannel);
+	}
+	if (channels == 4) {
+		makePretty(colors_fourChannel);
+	}
+	if (channels == 5) {
+		makePretty(colors_fiveChannel);
+	}
+	}
+	
+	run("Save");
 
-for (i=0; i<titles.length; i++){
-		selectWindow(titles[i]);
-		name = getTitle();
-		dotIndex = indexOf(name, ".");
-		nameWithoutExtension =  substring(name, 0, dotIndex);
-		
-		//run("Properties...", "channels=2 slices=1 frames=150 pixel_width=0.2661449 pixel_height=0.2661449 voxel_depth=0.5000000 frame=5");
-		Stack.setDisplayMode("composite");
-		Stack.setChannel(1);
-		run("Green");
-		run("Enhance Contrast", "saturated=0.15");
-		Stack.setChannel(2);
-		run("Magenta");
-		run("Enhance Contrast", "saturated=0.15");
-
-		run("Save");	
-		//close();
-
+function makePretty (LUT_Array) {
+	Stack.setDisplayMode("composite");
+	for (i=0; i<LUT_Array.length; i++) {
+		Stack.setChannel(i+1);
+		run("Enhance Contrast", "saturated=" + percentSaturation);
+		run(LUT_Array[i]);
+	}
 }
+
+

@@ -4,7 +4,7 @@ while (nImages > 0) {
 	//gets and saves the movie dimensions for later use
 	fileName = getInfo("image.title"); 
 	//gets and saves the file name for later
-	differenceNumber = 6; 
+	differenceNumber = 2; 
 	//asks the user for the number of frames to subtract
 
 	imageName = getInfo("image.filename") ; 
@@ -13,7 +13,7 @@ while (nImages > 0) {
 	//this and the following line get the file name without the extension
 	fileNameWithoutExtension = substring(imageName, 0, dotIndex); 
 	//this and the above line get the file name without the extension
-	newFileName = fileNameWithoutExtension + "_Diff6.tif" ;
+	newFileName = fileNameWithoutExtension + "_Diff" + differenceNumber + ".tif" ;
 
 	counter = 1 ;//creates a counter variable that starts as 1 and increases by 1 with every trip through the loop
 	while (counter <= channels) {  //runs a loop as long as the there are still channels left to duplicate
@@ -65,8 +65,8 @@ while (nImages > 0) {
 	if (channels == 1) {
 		selectWindow("C1");
 	} 
-	
-	saveAs("Tiff","/Volumes/FlashSSD/210603_Live_SFC_Emb_Utr647/0_Analysis/"+newFileName);
+	savePath = "/Volumes/tripleWaves/triple_wave_analysis/200200-201200_singleLabels_data/pGBD/0_bleachCorr_rollAvg_Diff-pGBD/";
+	saveAs("Tiff", savePath + newFileName);
 	close();
 	selectWindow(fileName);	
 	close();

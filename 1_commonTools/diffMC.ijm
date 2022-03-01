@@ -51,7 +51,7 @@ while (counter <= channels) {  //runs a loop as long as the there are still chan
 	selectWindow("Result of firstDup") ;
 	rename("C" + counter) ; //renames difference movie to the channel it was generated from
 	getMinAndMax(min, max) ;
-	setMinAndMax(0, 65536) ; //thresholds the video 
+	setMinAndMax(0, max) ; //thresholds the video 
 	run("16-bit");
 	run("Enhance Contrast", "saturated=0.35");
 	selectWindow(fileName);

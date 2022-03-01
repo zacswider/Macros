@@ -6,11 +6,12 @@ while (nImages > 0) {
 	fileNameWithoutExtension = substring(fileName, 0, dotIndex); 
 	//this and the above line get the file name without the extension
 	newFileName = fileNameWithoutExtension + "_volCorr.tif" ;
-	run("Running ZProjector2", "project=2 projection=[Average Intensity]");
+	run("Running ZProjector2", "project=3 projection=[Average Intensity]");
 	run("Enhance Contrast", "saturated=0.15");
 	setSlice(25);
 	run("Delete Slice");
-	saveAs("Tiff","/Volumes/FlashSSD/210618_Live_SFC_Aegg_BFP_GFP-pGBD_mCh-2XrGBD_iRFP-Utr/0_analysis/BFP-rGBD/3_BFP-rGBD-volCorr-noNorm-roll2/"+newFileName);
+	savePath = "/Users/bementmbp/Desktop/BementLab/2_Projects/29_tripleWavePaper/Figures/Figure01/tripleWaves/200200-201200_singleLabels_data/GFP/0_bleachCorr_rollAvg3-GFP";
+	saveAs("Tiff", savePath + newFileName);
 	close();
 	close();
 					}
