@@ -4,8 +4,10 @@ while (nImages > 0) {
 	//gets and saves the movie dimensions for later use
 	fileName = getInfo("image.title"); 
 	//gets and saves the file name for later
-	differenceNumber = 2; 
-	//asks the user for the number of frames to subtract
+	
+	differenceNumber = 2; // CHANGE THIS TO CHANGE THE NUMBER OF FRAMES YOU SUBTRACT
+	path = getInfo("image.directory");  // use the source directory...
+	//path = "/Users/bementmbp/Desktop" // ...or paste a custom save path
 
 	imageName = getInfo("image.filename") ; 
 	//saves image name for future use
@@ -65,8 +67,7 @@ while (nImages > 0) {
 	if (channels == 1) {
 		selectWindow("C1");
 	} 
-	savePath = "/Volumes/tripleWaves/triple_wave_analysis/200200-201200_singleLabels_data/pGBD/0_bleachCorr_rollAvg_Diff-pGBD/";
-	saveAs("Tiff", savePath + newFileName);
+	saveAs("Tiff", path + newFileName);
 	close();
 	selectWindow(fileName);	
 	close();
