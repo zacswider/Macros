@@ -45,7 +45,7 @@ while (nImages > 0) {
 		close(); //closes the duplicated channel selection
 		selectWindow("Result of firstDup") ;
 		rename("C" + counter) ; //renames difference movie to the channel it was generated from
-		getMinAndMax(min, max) ;
+		getMinAndMax(min, max) ; // if you want to internally normalize...
 		setMinAndMax(0, 65536) ; //thresholds the video 
 		run("16-bit");
 		run("Enhance Contrast", "saturated=0.35");
