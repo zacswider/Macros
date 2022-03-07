@@ -1,11 +1,12 @@
 //This macro creates difference movies from multi-channel movies
+differenceNumber = getNumber("how many frames do you want to subtract?", 5) ; // default 5 frames
+
 while (nImages > 0) {
 	getDimensions(width, height, channels, slices, frames) ;		
 	//gets and saves the movie dimensions for later use
 	fileName = getInfo("image.title"); 
 	//gets and saves the file name for later
 	
-	differenceNumber = 2; // CHANGE THIS TO CHANGE THE NUMBER OF FRAMES YOU SUBTRACT
 	path = getInfo("image.directory");  // use the source directory...
 	//path = "/Users/bementmbp/Desktop" // ...or paste a custom save path
 
