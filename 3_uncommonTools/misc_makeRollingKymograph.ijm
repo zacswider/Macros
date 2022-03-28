@@ -12,7 +12,7 @@ height = getHeight() ;     //gets the height of the image for the scaling and lo
 width = getWidth() ;       //gets the width of the image for the scaling and looping steps
 run("Scale...", "x=1.0 y=1.0 z=- width=&width height=&height depth=&height interpolation=None average process create");
 //scales the kymograph so that there is one "slice" for every line of pixels (i.e. z and height are equivalent)
-setColor(0) ;//sets the drawing color to black - you can change this if you want something else
+setForegroundColor(255, 255, 255);//sets the drawing color to white - you can change this if you want something else
 for (i=1; i<height; i++) { //runs a loop through each frame in the series
 	Stack.setSlice(i) ;    //changes the slice for each position in the loop
 	fillRect(0, i, width, height) ;  //draws a rectangle hiding the rest of the kymograph to create the "rolling" effect
