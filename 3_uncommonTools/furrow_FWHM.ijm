@@ -4,7 +4,23 @@ getLine(x1, y1, x2, y2, lineWidth);
 
 angle = getAngle(x1, y1, x2, y2);
 
-print(angle);
+x_values = newArray(x1, x2);
+y_values = newArray(y1, y2);
+
+Array.getStatistics(x_values, x_min, x_max);
+Array.getStatistics(y_values, y_min, y_max);
+
+top_left_x = x_min - 100 ; 
+top_left_y = y_min - 100 ;
+x_distance = x_max - x_min + 200 ;
+y_distance = y_max - y_min + 200 ;
+
+makeRectangle(top_left_x, top_left_y, x_distance, y_distance);
+
+run("Duplicate...", " ");
+Stack.setChannel(2);
+run("Delete Slice", "delete=channel");
+run("Rotate... ", "angle=" + angle + " grid=1 interpolation=Bicubic");
 
 function getAngle(x1, y1, x2, y2) {
   q1=0; q2orq3=2; q4=3; //quadrant
