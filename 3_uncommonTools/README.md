@@ -1,0 +1,1 @@
+This respository contains an eclectic mix of macros written to process images. Many of these macros are messy and gross and so this should probably be a private repository, but I am keeping it public so that my current and future labmates can use them.
