@@ -1,0 +1,1 @@
+These macros were used to generate the line plots in figures 1, 2, 3, 4, 5, and 6 in the publication [Cross-talk-dependent cortical patterning of Rho GTPases during cell repair](https://www.molbiolcell.org/doi/full/10.1091/mbc.E20-07-0481)
