@@ -1,4 +1,4 @@
-This repo contains a collectio of FIJI macros, see below for specifics.
+This repo contains a collection of FIJI macros, see below for specifics.
 
 **1_commonTools**  
 These are commonly used (by me) macros for routine processing of confocal time series.
